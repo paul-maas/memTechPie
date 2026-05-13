@@ -1,0 +1,41 @@
+# --- Obsidian: per-machine state (не версионируется) ---
+**/.obsidian/workspace
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/cache
+**/.obsidian/graph.json
+
+# Obsidian app state, которое тоже не имеет смысла шарить
+**/.obsidian/app.json
+
+# Obsidian trash
+**/.trash/
+
+# --- macOS / Windows ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# --- Редакторы ---
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# --- Python (валидатор) ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# --- Логи валидатора ---
+scripts/*.log
+
+# --- ChromaDB кэш (если когда-нибудь окажется рядом) ---
+chroma.sqlite3
+*.bin
