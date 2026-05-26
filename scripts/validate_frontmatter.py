@@ -99,6 +99,22 @@ SCHEMAS: list[tuple[str, Schema]] = [
         enums={"status": STATUSES, "confidence": CONFIDENCES,
                "paradigm": PARADIGMS},
     )),
+    ("cards/models/", Schema(
+        name="card-model",
+        expected_type="model",
+        required={"id", "title", "type", "school", "paradigm",
+                  "status", "confidence", "version"},
+        enums={"status": STATUSES, "confidence": CONFIDENCES,
+               "paradigm": PARADIGMS},
+    )),
+    ("cards/exercises/", Schema(
+        name="card-exercise",
+        expected_type="exercise",
+        required={"id", "title", "type", "school", "paradigm",
+                  "status", "confidence", "version"},
+        enums={"status": STATUSES, "confidence": CONFIDENCES,
+               "paradigm": PARADIGMS},
+    )),
     ("cards/conflicts/", Schema(
         name="card-conflict",
         expected_type="concept-conflict",

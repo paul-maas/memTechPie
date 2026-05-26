@@ -12,11 +12,13 @@ ontology/
   schools/         — узлы школ (Gestalt, CBT, ICF, Erickson, Coactive, ...)
   paradigms/       — узлы парадигм (cognitive, behavioral, systemic, humanistic, ...)
 cards/
-  concepts/        — карточки концепций
-  techniques/      — карточки техник
-  frameworks/      — карточки фреймворков и моделей
-  conflicts/       — карточки concept-conflict (явные методические противоречия)
-  borrowed/        — карточки заимствованных элементов
+  concepts/        — концепции (идеи/понятия: «что это значит»)
+  models/          — модели (описательные карты: «как увидеть»)
+  frameworks/      — фреймворки (процессы: «как действовать»)
+  techniques/      — техники (ход коуча в моменте)
+  exercises/       — упражнения (структурированная активность клиента)
+  conflicts/       — concept-conflict (явные методические противоречия)
+  borrowed/        — заимствованные элементы (флаг borrowed: true)
 sources/           — сырая библиотека: source-записи (метаданные)
   raw/             — полные тексты книг/статей/расшифровок (.md), сырьё для экстракции
 playbooks/         — плейбуки оператора (ingest, groom, conflict-resolve, content-production, ...)
