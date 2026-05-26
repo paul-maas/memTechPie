@@ -84,7 +84,7 @@ tags: [ingest, operator, pipeline]
    - `source_type` (book | article | lecture | transcript | own_material | course)
    - `status_kind` (primary | retelling | criticism)
    - `themes` — ключевые темы
-2. Если есть полный текст — положи его как `sources/raw/{id}-full.md` (он проиндексируется, но карточки строятся НЕ из него повторно — anti-echo).
+2. Если есть полный текст — положи его как `sources/raw/{id}-full.md`. Это легитимное сырьё (слой 4), и карточки извлекаются именно из него (шаг 3). Anti-echo означает иное: не извлекать содержание из уже существующих **карточек** (слой 3) — они служат только для проверки на дубликат.
 3. **Собственный материал Pavel'я** → source помечается `source_type: own_material`, `status_kind: primary`. Карточки из него — кандидаты в canonical-ядро (но всё равно создаются как `draft`, канонизирует Pavel).
 
 ### Шаг 3. Извлечение карточек (anti-echo)
@@ -173,7 +173,8 @@ cd "<vaults>" && python3 scripts/validate_frontmatter.py kb-knowledge
 | Дедуп точных дубликатов | Новый узел онтологии (школа/парадигма) |
 | Валидация и починка схемы | Карточки `concept-conflict` |
 | Переиндексация | Удаление чего-либо |
-| Audit-записи | Понижение/повышение confidence вручную |
+| Понижение confidence (с обоснованием в audit) | Повышение confidence |
+| Audit-записи | Добавление в реестр `borrowed_elements` |
 
 ## Эскалация (human-checkpoint triggers)
 

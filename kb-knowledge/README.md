@@ -17,10 +17,12 @@ cards/
   frameworks/      — карточки фреймворков и моделей
   conflicts/       — карточки concept-conflict (явные методические противоречия)
   borrowed/        — карточки заимствованных элементов
-sources/           — сырая библиотека (книги, статьи, материалы)
+sources/           — сырая библиотека: source-записи (метаданные)
+  raw/             — полные тексты книг/статей/расшифровок (.md), сырьё для экстракции
 playbooks/         — плейбуки оператора (ingest, groom, conflict-resolve, content-production, ...)
-inbox/             — pending-изменения от AI на review Pavel'ю
 ```
+
+> Очередь изменений на review (`inbox/`) и audit log живут в `kb-ops`, не здесь. Draft-карточки находятся прямо в `cards/{type}/` со `status: draft` (фильтр `fm_status:draft`), отдельной inbox-папки для них нет.
 
 ## Frontmatter-схема
 
