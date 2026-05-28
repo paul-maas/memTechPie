@@ -8,7 +8,7 @@
 audit/             — append-only лог AI-операций над kb-knowledge и kb-clients (по дням: YYYY-MM-DD.md)
 reports/           — ежемесячные отчёты о здоровье базы (YYYY-MM.md)
 metrics/           — снимки метрик (carded counts, soft-limit warnings, средний возраст canonical, и т.п.)
-inbox/             — pending-изменения, ждущие review Pavel'я (одна запись = один файл)
+inbox/             — DECISIONS на review (промоции/мерджи/конфликты/новые узлы онтологии). Блокирует связанное действие AI до ответа. Не путать с kb-knowledge/inbox/ (digest)
 ```
 
 ## Принципы

@@ -82,10 +82,10 @@ tags: [ingest, operator, pipeline]
    - `id` = slug (совпадает с именем файла)
    - `authors`, `year`, `language` (ru/en), `school`, `paradigm`
    - `source_type` (book | article | lecture | transcript | own_material | course)
-   - `status_kind` (primary | retelling | criticism)
+   - `source_kind` (primary | retelling | criticism)
    - `themes` — ключевые темы
 2. Если есть полный текст — положи его как `sources/raw/{id}-full.md`. Это легитимное сырьё (слой 4), и карточки извлекаются именно из него (шаг 3). Anti-echo означает иное: не извлекать содержание из уже существующих **карточек** (слой 3) — они служат только для проверки на дубликат.
-3. **Собственный материал Pavel'я** → source помечается `source_type: own_material`, `status_kind: primary`. Карточки из него — кандидаты в canonical-ядро (но всё равно создаются как `draft`, канонизирует Pavel).
+3. **Собственный материал Pavel'я** → source помечается `source_type: own_material`, `source_kind: primary`. Карточки из него — кандидаты в canonical-ядро (но всё равно создаются как `draft`, канонизирует Pavel).
 
 ### Шаг 3. Извлечение карточек (anti-echo)
 
@@ -142,23 +142,28 @@ cd "<vaults>" && python3 scripts/validate_frontmatter.py kb-knowledge
    - Помни операционную находку 0.2.2: свежедобавленные vault'ы могут требовать `force=true`.
 2. Sanity-check: `semantic_search` с `where_metadata` по `fm_type`/`fm_status` — убедись, что новые карточки находятся и фильтруются.
 
-### Шаг 9. Audit + inbox
+### Шаг 9. Audit + два инбокса
 
-1. Запись в `kb-ops/audit/YYYY-MM-DD.md` по шаблону `audit-entry.md`:
+Два инбокса с разными ролями:
+- **`kb-ops/inbox/`** — DECISIONS (блокирующие): промоции, мерджи, конфликты, новые узлы онтологии, удаления. По шаблону `review-entry.md`.
+- **`kb-knowledge/inbox/`** — DIGEST (информационный): сводка сессии ингеста для Pavel'я. По шаблону `digest-entry.md`.
+
+1. Запись в `kb-ops/audit/YYYY-MM-DD.md` по шаблону `audit-entry.md` (машинно-читаемый журнал):
    - `action: ingest`, `operator`, `target_vault: kb-knowledge`
    - `target_paths` — список созданных карточек
    - `reasoning` — из какого источника, сколько карточек, сколько эскалаций
-2. Все эскалации шагов 4-6 — отдельными файлами в `kb-ops/inbox/`.
+2. Все эскалации шагов 4-6 — отдельными файлами в `kb-ops/inbox/` по шаблону `review-entry.md`.
+3. Одна сводка сессии в `kb-knowledge/inbox/YYYY-MM-DD-<session-id>.md` по шаблону `digest-entry.md`: что прочитал, какие draft-карточки, какие потенциальные дубликаты/конфликты помечены, ссылки на `kb-ops/inbox/` decisions и на `kb-ops/audit/`. Digest НЕ блокирует — он для visibility.
 
 ### Шаг 10. Закрытие батча
 
-Отчёт Pavel'ю:
+Отчёт Pavel'ю (короткое сообщение в Cowork-сессии):
 
-- N draft-карточек создано (по типам)
-- M потенциальных мерджей в inbox
-- K конфликтов помечено
-- L пробелов онтологии эскалировано
-- Что в `inbox/` ждёт его review
+- N draft-карточек создано (по типам). Найти: `where_metadata: {fm_status: "draft", fm_extracted_by: "<session>"}`
+- M потенциальных мерджей в `kb-ops/inbox/` (ждут approve/reject)
+- K конфликтов помечено как `concept-conflict` (в `kb-ops/inbox/`)
+- L пробелов онтологии эскалировано (в `kb-ops/inbox/`)
+- Полный отчёт сессии: `[[kb-knowledge/inbox/YYYY-MM-DD-<session-id>]]` (digest)
 - Напоминание: коммит (`git add` + `git commit`) и `git push` — действие Pavel'я (sandbox без credentials) ЛИБО выполняется в той сессии, если credentials доступны.
 
 ---

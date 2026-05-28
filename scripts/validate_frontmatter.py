@@ -51,7 +51,7 @@ PARADIGMS = {
     "psychoanalytic", "constructivist", "existential",
 }
 SOURCE_TYPES = {"book", "article", "lecture", "transcript", "own_material", "course"}
-STATUS_KINDS = {"primary", "retelling", "criticism"}
+SOURCE_KINDS = {"primary", "retelling", "criticism"}
 MASTERY_LEVELS = {"novice", "working", "confident", "integrated"}
 TARGET_VAULTS = {"kb-knowledge", "kb-clients", "kb-ops"}
 
@@ -149,10 +149,10 @@ SCHEMAS: list[tuple[str, Schema]] = [
     ("sources/", Schema(
         name="source",
         expected_type="source",
-        required={"id", "title", "type", "source_type", "status_kind",
+        required={"id", "title", "type", "source_type", "source_kind",
                   "status", "confidence", "version"},
         enums={"status": STATUSES, "confidence": CONFIDENCES,
-               "source_type": SOURCE_TYPES, "status_kind": STATUS_KINDS},
+               "source_type": SOURCE_TYPES, "source_kind": SOURCE_KINDS},
     )),
     ("playbooks/", Schema(
         name="playbook",

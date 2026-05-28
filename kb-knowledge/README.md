@@ -22,9 +22,14 @@ cards/
 sources/           — сырая библиотека: source-записи (метаданные)
   raw/             — полные тексты книг/статей/расшифровок (.md), сырьё для экстракции
 playbooks/         — плейбуки оператора (ingest, groom, conflict-resolve, content-production, ...)
+inbox/             — DIGEST AI-активности (сводки сессий, не decisions; не путать с kb-ops/inbox/)
 ```
 
-> Очередь изменений на review (`inbox/`) и audit log живут в `kb-ops`, не здесь. Draft-карточки находятся прямо в `cards/{type}/` со `status: draft` (фильтр `fm_status:draft`), отдельной inbox-папки для них нет.
+> Два инбокса с разными ролями (v1.6):
+> - `kb-knowledge/inbox/` (этот) — **digest**: «что сделал AI», информационно, не блокирует.
+> - `kb-ops/inbox/` — **decisions**: «что решить Pavel'ю», блокирует связанное действие AI.
+>
+> Draft-карточки живут прямо в `cards/{type}/` со `status: draft` (находятся фильтром `fm_status:draft`), отдельной inbox-папки для них нет.
 
 ## Frontmatter-схема
 

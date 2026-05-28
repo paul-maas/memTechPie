@@ -8,7 +8,7 @@ language:
 school: 
 paradigm: 
 source_type: book
-status_kind: primary
+source_kind: primary
 themes: []
 ingested_at: ""
 chunks_indexed: 0
@@ -55,7 +55,7 @@ tags: []
 ПРАВИЛА для source:
 
 - `source_type`: book | article | lecture | transcript | own_material | course
-- `status_kind`: primary (первоисточник) | retelling (пересказ) | criticism (критика)
+- `source_kind`: primary (первоисточник) | retelling (пересказ) | criticism (критика)
 - `language`: ru | en | (другое)
 - Файл с метаданными живёт в `sources/`. Полный текст книги (если есть) — отдельный файл рядом с тем же id (например `id-full.md`), индексируется MCP, но карточки строятся НЕ из него (anti-echo), а из источника напрямую при первом ингесте.
 -->
